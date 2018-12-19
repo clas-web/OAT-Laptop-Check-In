@@ -10,11 +10,11 @@ function onOpen() {
   ];
     spreadsheet.addMenu('Click this first to initialize script', menuItems);
     
-    var ss = SpreadsheetApp.getActive();
+    /*var ss = SpreadsheetApp.getActive();
     ScriptApp.newTrigger('myOnEdit')    
     .forSpreadsheet(ss)
     .onEdit()
-    .create();    
+    .create();    */
     }    
     
     //Create trigger for sheet to have permissions
@@ -145,7 +145,7 @@ function checkOutHTMLDialog(){
                 '<input type="submit" value="Submit" onClick="formSubmit()" /> </form> ';
   
   //Prepare HTML script in dialog that calls GAS function
-  var HTMLScript = '<script type="text/javascript"> function formSubmit(userLastName, ' + 
+   var HTMLScript = '<script type="text/javascript"> function formSubmit(userLastName, ' + 
     'userFirstName, userPhone, userNinernet, userReturnDate, userNotes, userOther) { var deptChoice = document.getElementById("dpt-dropdown").value;'+
       'var userLastName=document.getElementsByName("userLastName")[0].value;' +
         'var userFirstName=document.getElementsByName("userFirstName")[0].value;' +
@@ -156,11 +156,11 @@ function checkOutHTMLDialog(){
                   'var userOther=document.getElementsByName("userOther")[0].value;' +
                     'document.getElementById("dept").innerHTML = deptChoice; google.script.run.checkOut(deptChoice, userLastName, ' + 
                       'userFirstName, userPhone, userNinernet, userReturnDate, userNotes, userOther); google.script.host.close();} ' + 
-                        '</script> </body>';
+                        '</script>';
   
   //Display HTML output  
   var htmlApp = HtmlService  
-  .createHtmlOutput("<body>" + dropdownMenu + HTMLMessage + HTMLScript)
+  .createHtmlOutput("<!DOCTYPE html><html><body>" + dropdownMenu + HTMLMessage + HTMLScript + "</body></html>")
   .setWidth(400)
   .setHeight(600);
   
